@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useRules } from "../../zustand/RulesStore";
 import CustomButton from "../CustomButton/CustomButton";
 
 const Container = styled.div`
@@ -9,9 +10,15 @@ const Container = styled.div`
 type BottomPannelProps = {};
 
 const BottomPannel: React.FC<BottomPannelProps> = () => {
+  const openRules = useRules((state) => state.openRules);
+
+  const handleShowRules = () => {
+    openRules();
+  };
+
   return (
     <Container>
-      <CustomButton style="empty" text="RULES" />
+      <CustomButton style="empty" text="RULES" onClick={handleShowRules} />
     </Container>
   );
 };

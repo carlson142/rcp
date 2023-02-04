@@ -2,12 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import BottomPannel from "./components/BottomPannel/BottomPannel";
 import InfoPannel from "./components/InfoPannel/InfoPannel";
+import Rules from "./components/Rules/Rules";
+import { useRules } from "./zustand/RulesStore";
 
 const Container = styled.main`
   min-height: 100vh;
   height: 100%;
 
   width: 100vw;
+
+  padding: 3rem;
 
   background-image: linear-gradient(
     to right,
@@ -20,14 +24,17 @@ const Container = styled.main`
   align-items: center;
   justify-content: space-between;
 
-  padding: 3rem;
+  position: relative;
 `;
 
 type AppProps = {};
 
 const App: React.FC<AppProps> = () => {
+  const openRules = useRules((state) => state.open);
+
   return (
     <Container>
+      {openRules && <Rules />}
       <InfoPannel />
       <BottomPannel />
     </Container>

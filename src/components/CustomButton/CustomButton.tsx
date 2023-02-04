@@ -30,9 +30,18 @@ const Button = styled.button<BProps>`
 interface CustomButtonProps {
   style: "empty" | "full";
   text: string;
+  onClick: () => void;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ style, text }) => {
-  return <Button bstyle={style}>{text}</Button>;
+const CustomButton: React.FC<CustomButtonProps> = ({
+  style,
+  text,
+  onClick,
+}) => {
+  return (
+    <Button bstyle={style} onClick={onClick}>
+      {text}
+    </Button>
+  );
 };
 export default CustomButton;
