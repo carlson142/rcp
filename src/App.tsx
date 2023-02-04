@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import BottomPannel from "./components/BottomPannel/BottomPannel";
 import InfoPannel from "./components/InfoPannel/InfoPannel";
 
-const Container = styled.div`
+const Container = styled.main`
   min-height: 100vh;
   height: 100%;
 
@@ -17,6 +18,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
   padding: 3rem;
 `;
@@ -27,6 +29,7 @@ const App: React.FC<AppProps> = () => {
   return (
     <Container>
       <InfoPannel />
+      <BottomPannel />
     </Container>
   );
 };
