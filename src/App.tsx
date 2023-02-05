@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BottomPannel from "./components/BottomPannel/BottomPannel";
 import InfoPannel from "./components/InfoPannel/InfoPannel";
 import Rules from "./components/Rules/Rules";
+import StarterComponent from "./components/StarterComponent/StarterComponent";
 import { useRules } from "./zustand/RulesStore";
 
 const Container = styled.main`
@@ -36,6 +37,7 @@ const App: React.FC<AppProps> = () => {
     <Container>
       {openRules && <Rules />}
       <InfoPannel />
+      <StarterComponent />
       <BottomPannel />
     </Container>
   );

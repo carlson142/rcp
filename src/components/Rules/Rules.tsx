@@ -8,6 +8,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1000;
 
   height: 100vh;
   width: 100vw;
