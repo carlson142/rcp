@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import rules from "../../../public/image-rules.svg";
-import close from "../../../public/icon-close.svg";
+import rules from "../../imgs/image-rules.svg";
+import close from "../../imgs/icon-close.svg";
 import { useRules } from "../../zustand/RulesStore";
 
 const Container = styled.div`

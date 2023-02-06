@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import triangle from "../../../public/bg-triangle.svg";
-import rock from "../../../public/icon-rock.svg";
-import paper from "../../../public/icon-paper.svg";
-import scissors from "../../../public/icon-scissors.svg";
+import triangle from "../../imgs/bg-triangle.svg";
+import rock from "../../imgs/icon-rock.svg";
+import paper from "../../imgs/icon-paper.svg";
+import scissors from "../../imgs/icon-scissors.svg";
+import { useSelectItem } from "../../zustand/SelectItemStore";
 
 const Container = styled.div`
   height: 55vh;
@@ -60,7 +61,7 @@ const ChooseBox = styled.div<CBProps>`
   }
 `;
 
-const IconPaper = styled.img`
+const SelectedIcon = styled.img`
   height: 15rem;
   width: 15rem;
   object-fit: contain;
@@ -73,14 +74,25 @@ const IconPaper = styled.img`
 type StarterComponentProps = {};
 
 const StarterComponent: React.FC<StarterComponentProps> = () => {
+  const selectItem = useSelectItem((state) => state.selectItem);
+
+  const handleSelectItem = (item: string) => {
+    selectItem(item);
+  };
+
   return (
     <Container>
       <Box>
         <TriangleContainer>
           <Triangle src={triangle} alt="triangle" />
           {/* Paper */}
-          <ChooseBox top="0" left="0" bgcolor="var(--color-paper-gradient)">
-            <IconPaper src={paper} alt="paper" />
+          <ChooseBox
+            top="0"
+            left="0"
+            bgcolor="var(--color-paper-gradient)"
+            onClick={() => handleSelectItem("paper")}
+          >
+            <SelectedIcon src={paper} alt="paper" />
           </ChooseBox>
 
           {/* Scissors */}
@@ -88,13 +100,19 @@ const StarterComponent: React.FC<StarterComponentProps> = () => {
             top="0"
             left="100%"
             bgcolor="var( --color-scissors-gradient)"
+            onClick={() => handleSelectItem("scissors")}
           >
-            <IconPaper src={scissors} alt="paper" />
+            <SelectedIcon src={scissors} alt="scissors" />
           </ChooseBox>
 
           {/* Rock */}
-          <ChooseBox top="100%" left="50%" bgcolor="var(--color-rock-gradient)">
-            <IconPaper src={rock} alt="paper" />
+          <ChooseBox
+            top="100%"
+            left="50%"
+            bgcolor="var(--color-rock-gradient)"
+            onClick={() => handleSelectItem("rock")}
+          >
+            <SelectedIcon src={rock} alt="rock" />
           </ChooseBox>
         </TriangleContainer>
       </Box>

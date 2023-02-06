@@ -5,6 +5,8 @@ interface BProps {
   bstyle: string;
 }
 const Button = styled.button<BProps>`
+  min-width: max-content;
+
   padding: 1rem 4rem;
   border-radius: 1rem;
   text-transform: uppercase;
@@ -23,6 +25,18 @@ const Button = styled.button<BProps>`
     :hover {
         background-color: white;
         color: var(--score-text);
+    }
+  `}
+
+  ${(props) =>
+    props.bstyle === "full" &&
+    `
+    background-color: white;
+    color: var(--dark-text);
+    border: none;
+
+    :hover {
+        color: hsl(349, 70%, 56%);
     }
   `}
 `;

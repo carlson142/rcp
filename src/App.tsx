@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import BattleComponent from "./components/BattleComponent/BattleComponent";
 import BottomPannel from "./components/BottomPannel/BottomPannel";
 import InfoPannel from "./components/InfoPannel/InfoPannel";
 import Rules from "./components/Rules/Rules";
 import StarterComponent from "./components/StarterComponent/StarterComponent";
 import { useRules } from "./zustand/RulesStore";
+import { useSelectItem } from "./zustand/SelectItemStore";
 
 const Container = styled.main`
   min-height: 100vh;
@@ -15,7 +17,7 @@ const Container = styled.main`
   padding: 3rem;
 
   background-image: linear-gradient(
-    to right,
+    to bottom,
     hsl(214, 47%, 23%),
     hsl(237, 49%, 15%)
   );
@@ -28,16 +30,22 @@ const Container = styled.main`
   position: relative;
 `;
 
-type AppProps = {};
-
-const App: React.FC<AppProps> = () => {
+const App: React.FC = () => {
   const openRules = useRules((state) => state.open);
+  const pickedItem = useSelectItem((state) => state.item);
+
+  // console.log(pickedItem);
 
   return (
     <Container>
       {openRules && <Rules />}
       <InfoPannel />
-      <StarterComponent />
+
+      {pickedItem.length > 0 ? (
+        <BattleComponent pickedItem={pickedItem} />
+      ) : (
+        <StarterComponent />
+      )}
       <BottomPannel />
     </Container>
   );
