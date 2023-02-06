@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { whoWin } from "../../helpers/helpers";
 import { useSelectItem } from "../../zustand/SelectItemStore";
+import { useWinner } from "../../zustand/WinnerStore";
 
 import CustomButton from "../CustomButton/CustomButton";
 
@@ -130,6 +131,9 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
 
   const selectItem = useSelectItem((state) => state.selectItem);
 
+  const addOne = useWinner((state) => state.addOne);
+  const minusOne = useWinner((state) => state.minusOne);
+
   // RESET GAME
   const handlePlayAgain = () => {
     selectItem("");
@@ -140,6 +144,13 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
     setTimeout(() => {
       const mN = Math.floor(Math.random() * 3);
       setHouseItem(items[mN]);
+
+      // if (gameResult === "win") {
+      //   addOne();
+      // }
+      // if (gameResult === "lose") {
+      //   minusOne();
+      // }
     }, 3000);
   }, []);
 
@@ -147,6 +158,8 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
     const winner = whoWin(pickedItem, houseItem);
     setGameResult(winner);
   }, [houseItem]);
+
+  console.log(gameResult);
 
   return (
     <Container>

@@ -7,8 +7,19 @@ interface Store {
   minusOne: () => void;
 }
 
-export const useWinner = create<Store>()((set) => ({
-  winCount: 0,
-  addOne: () => {},
-  minusOne: () => {},
-}));
+export const useWinner = create<Store>()(
+  persist(
+    (set) => ({
+      winCount: 0,
+      addOne: () => {
+        set((state) => ({ winCount: state.winCount + 1 }));
+      },
+      minusOne: () => {
+        set((state) => ({ winCount: state.winCount - 1 }));
+      },
+    }),
+    {
+      name: "win-count-storage",
+    }
+  )
+);

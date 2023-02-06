@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useWinner } from "../../zustand/WinnerStore";
 
 const Container = styled.div`
   width: 50vw;
@@ -56,6 +57,8 @@ const ScoreNumber = styled.span`
 type InfoPannelProps = {};
 
 const InfoPannel: React.FC<InfoPannelProps> = () => {
+  const winCounter = useWinner((state) => state.winCount);
+
   return (
     <Container>
       <Left>
@@ -67,7 +70,7 @@ const InfoPannel: React.FC<InfoPannelProps> = () => {
       <Right>
         <Score>
           <ScoreText>Score</ScoreText>
-          <ScoreNumber>0</ScoreNumber>
+          <ScoreNumber>{winCounter}</ScoreNumber>
         </Score>
       </Right>
     </Container>
