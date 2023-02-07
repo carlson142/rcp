@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { whoWin } from "../../helpers/helpers";
+import { colorArray, whoWin } from "../../helpers/helpers";
 import { useSelectItem } from "../../zustand/SelectItemStore";
 import { useWinner } from "../../zustand/WinnerStore";
 
 import CustomButton from "../CustomButton/CustomButton";
+import { Fireworks } from "fireworks/lib/react";
 
 const Container = styled.div`
   height: 55vh;
@@ -37,6 +38,7 @@ const Text = styled.h2`
 
 interface CBProps {
   selectedItem?: string;
+  gameStatus?: string;
 }
 
 const ChooseBox = styled.div<CBProps>`
@@ -48,6 +50,8 @@ const ChooseBox = styled.div<CBProps>`
   align-items: center;
 
   border-radius: 50%;
+
+  box-shadow: 0px 10px 0px #acacac97, 0px 0px 0px #111;
 
   ${(props) =>
     props.selectedItem === "paper" &&
@@ -72,6 +76,15 @@ ${(props) =>
   cursor: pointer;
 `;
 
+const ChooseWrapperBox = styled.div`
+  height: 35rem;
+  width: 35rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const SelectedIcon = styled.img`
   height: 25rem;
   width: 25rem;
@@ -80,6 +93,8 @@ const SelectedIcon = styled.img`
   padding: 6rem;
   background-color: #e4e3e3;
   border-radius: 50%;
+
+  box-shadow: 0px 0px 0px #888, 0px -10px 0px #acacac;
 `;
 
 const Pulse = keyframes`
@@ -135,6 +150,20 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
   const addOne = useWinner((state) => state.addOne);
   const minusOne = useWinner((state) => state.minusOne);
 
+  // FIREWORKS
+  let fxProps = {
+    count: 4,
+    interval: 500,
+    colors: colorArray,
+    calc: (props: any, i: any) => ({
+      ...props,
+      x: (i + 1) * (window.innerWidth / 4) - (i + 1) * 100,
+      y: 200 + Math.random() * 100 - 50 + (i === 2 ? -80 : 0),
+    }),
+    canvasWidth: 500,
+    canvasHeight: 800,
+  };
+
   // RESET GAME
   const handlePlayAgain = () => {
     selectItem("");
@@ -170,9 +199,13 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
 
   return (
     <Container>
+      {gameResult === "win" && showGameResult === true && (
+        <Fireworks {...fxProps} />
+      )}
+
       <Block>
         <Text>You Picked</Text>
-        <ChooseBox selectedItem={pickedItem}>
+        <ChooseBox selectedItem={pickedItem} gameStatus={gameResult}>
           <SelectedIcon
             src={`../../src/imgs/icon-${pickedItem}.svg`}
             alt={pickedItem}
@@ -217,7 +250,8 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
 
       <Block>
         <Text>The House Picked</Text>
-        <ChooseBox>
+
+        <ChooseWrapperBox>
           {showGameResult ? (
             <ChooseBox selectedItem={houseItem}>
               <SelectedIcon
@@ -228,7 +262,7 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
           ) : (
             <AnimatedThing />
           )}
-        </ChooseBox>
+        </ChooseWrapperBox>
       </Block>
     </Container>
   );

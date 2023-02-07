@@ -45,6 +45,8 @@ const ChooseBox = styled.div<CBProps>`
   border-radius: 50%;
   background-image: linear-gradient(${(props) => props.bgcolor});
 
+  box-shadow: 0px 7px 0px #acacac97, 0px 0px 0px #111;
+
   position: absolute;
   top: ${(props) => props.top};
   left: ${(props) => props.left};
@@ -69,6 +71,8 @@ const SelectedIcon = styled.img`
   padding: 3rem;
   background-color: #e4e3e3;
   border-radius: 50%;
+
+  box-shadow: 0px 0px 0px #888, 0px -6px 0px #acacac;
 `;
 
 type StarterComponentProps = {};

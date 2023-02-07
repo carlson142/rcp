@@ -15,6 +15,10 @@ const Button = styled.button<BProps>`
   cursor: pointer;
   transition: all 0.2s ease-in;
 
+  :not(:last-child) {
+    margin-right: 2rem;
+  }
+
   ${(props) =>
     props.bstyle === "empty" &&
     `

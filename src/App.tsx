@@ -34,8 +34,6 @@ const App: React.FC = () => {
   const openRules = useRules((state) => state.open);
   const pickedItem = useSelectItem((state) => state.item);
 
-  // console.log(pickedItem);
-
   return (
     <Container>
       {openRules && <Rules />}

@@ -5,6 +5,7 @@ interface Store {
   winCount: number;
   addOne: () => void;
   minusOne: () => void;
+  resetGame: () => void;
 }
 
 export const useWinner = create<Store>()(
@@ -16,6 +17,9 @@ export const useWinner = create<Store>()(
       },
       minusOne: () => {
         set((state) => ({ winCount: state.winCount - 1 }));
+      },
+      resetGame: () => {
+        set({ winCount: 0 });
       },
     }),
     {
