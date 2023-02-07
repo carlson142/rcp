@@ -126,6 +126,7 @@ type BattleComponentProps = {
 const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
   const [houseItem, setHouseItem] = useState<string>("");
   const [gameResult, setGameResult] = useState<string | undefined>("");
+  const [showGameResult, setShowGameResult] = useState<boolean>(false);
 
   const items = ["rock", "paper", "scissors"];
 
@@ -140,26 +141,32 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
     setGameResult("");
   };
 
+  // Pick house item and show result of game. Run when component mount
   useEffect(() => {
-    setTimeout(() => {
-      const mN = Math.floor(Math.random() * 3);
-      setHouseItem(items[mN]);
+    const mN = Math.floor(Math.random() * 3);
+    setHouseItem(items[mN]);
 
-      // if (gameResult === "win") {
-      //   addOne();
-      // }
-      // if (gameResult === "lose") {
-      //   minusOne();
-      // }
+    setTimeout(() => {
+      setShowGameResult(true);
     }, 3000);
   }, []);
 
+  // Determine winner. Setting the result of game. Run when house picks item
   useEffect(() => {
     const winner = whoWin(pickedItem, houseItem);
     setGameResult(winner);
   }, [houseItem]);
 
-  console.log(gameResult);
+  // Updating game resul counter. Run when game result show
+  useEffect(() => {
+    if (gameResult === "win") {
+      addOne();
+    }
+    if (gameResult === "lose") {
+      minusOne();
+    }
+    if (gameResult === "dwar") return;
+  }, [showGameResult]);
 
   return (
     <Container>
@@ -173,7 +180,7 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
         </ChooseBox>
       </Block>
 
-      {houseItem && (
+      {showGameResult && (
         <ResultBlock>
           {gameResult === "draw" ? (
             <ResultText>
@@ -211,7 +218,7 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
       <Block>
         <Text>The House Picked</Text>
         <ChooseBox>
-          {houseItem.length > 0 ? (
+          {showGameResult ? (
             <ChooseBox selectedItem={houseItem}>
               <SelectedIcon
                 src={`../../src/imgs/icon-${houseItem}.svg`}
