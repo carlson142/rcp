@@ -17,6 +17,11 @@ const Container = styled.div`
   align-items: center;
 
   user-select: none;
+
+  @media (max-width: 1000px) {
+    position: relative;
+    transform: translateY(3rem);
+  }
 `;
 
 const Block = styled.div`
@@ -27,6 +32,14 @@ const Block = styled.div`
 
   height: 100%;
   width: 50%;
+
+  @media (max-width: 1000px) {
+    height: 35rem;
+  }
+
+  @media (max-width: 600px) {
+    height: 25rem;
+  }
 `;
 
 const Text = styled.h2`
@@ -34,6 +47,15 @@ const Text = styled.h2`
   letter-spacing: 2px;
   text-transform: uppercase;
   color: white;
+
+  @media (max-width: 1000px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 2rem;
+    text-align: center;
+  }
 `;
 
 interface CBProps {
@@ -74,6 +96,17 @@ ${(props) =>
   transition: all 0.2s ease-in;
 
   cursor: pointer;
+
+  @media (max-width: 1000px) {
+    height: 25rem;
+    width: 25rem;
+  }
+
+  @media (max-width: 600px) {
+    height: 15rem;
+    width: 15rem;
+    box-shadow: 0px 6px 0px #acacac97, 0px 0px 0px #111;
+  }
 `;
 
 const ChooseWrapperBox = styled.div`
@@ -83,6 +116,16 @@ const ChooseWrapperBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    height: 25rem;
+    width: 25rem;
+  }
+
+  @media (max-width: 600px) {
+    height: 15rem;
+    width: 15rem;
+  }
 `;
 
 const SelectedIcon = styled.img`
@@ -95,6 +138,19 @@ const SelectedIcon = styled.img`
   border-radius: 50%;
 
   box-shadow: 0px 0px 0px #888, 0px -10px 0px #acacac;
+
+  @media (max-width: 1000px) {
+    height: 20rem;
+    width: 20rem;
+
+    padding: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    height: 10rem;
+    width: 10rem;
+    box-shadow: 0px 0px 0px #888, 0px -6px 0px #acacac;
+  }
 `;
 
 const Pulse = keyframes`
@@ -115,6 +171,11 @@ const AnimatedThing = styled.div`
 
   background-color: var(--dark-text);
   animation: ${Pulse} 1s linear infinite;
+
+  @media (max-width: 600px) {
+    height: 10rem;
+    width: 10rem;
+  }
 `;
 
 const ResultBlock = styled.div`
@@ -123,6 +184,13 @@ const ResultBlock = styled.div`
 
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1000px) {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 const ResultText = styled.span`
@@ -132,6 +200,10 @@ const ResultText = styled.span`
   color: white;
 
   margin-bottom: 2rem;
+
+  @media (max-width: 600px) {
+    font-size: 4rem;
+  }
 `;
 
 type BattleComponentProps = {
@@ -194,7 +266,7 @@ const BattleComponent: React.FC<BattleComponentProps> = ({ pickedItem }) => {
     if (gameResult === "lose") {
       minusOne();
     }
-    if (gameResult === "dwar") return;
+    if (gameResult === "draw") return;
   }, [showGameResult]);
 
   return (

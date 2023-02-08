@@ -43,6 +43,11 @@ const Button = styled.button<BProps>`
         color: hsl(349, 70%, 56%);
     }
   `}
+
+  @media(max-width:600px) {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+  }
 `;
 
 interface CustomButtonProps {

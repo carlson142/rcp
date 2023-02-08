@@ -11,6 +11,14 @@ const Container = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
 `;
 
 const Left = styled.div`
@@ -25,6 +33,10 @@ const Text = styled.span`
   line-height: 1;
 
   color: white;
+
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
 `;
 
 const Right = styled.div``;
@@ -40,6 +52,10 @@ const Score = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    width: 10rem;
+  }
 `;
 
 const ScoreText = styled.p`
@@ -52,6 +68,10 @@ const ScoreNumber = styled.span`
   font-size: 5rem;
   font-weight: 700;
   color: var(--dark-text);
+
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
 `;
 
 type InfoPannelProps = {};

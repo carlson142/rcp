@@ -20,6 +20,10 @@ const Container = styled.div`
   align-items: center;
 
   user-select: none;
+
+  @media (max-width: 465px) {
+    background-color: white;
+  }
 `;
 
 const RulesBox = styled.div`
@@ -40,6 +44,10 @@ const Box = styled.div`
   align-items: center;
 
   margin-bottom: 4rem;
+
+  @media (max-width: 465px) {
+    justify-content: center;
+  }
 `;
 
 const RulesImage = styled.img`
@@ -53,12 +61,23 @@ const CloseIcon = styled.img`
   width: 2rem;
 
   cursor: pointer;
+
+  @media (max-width: 465px) {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
 `;
 
 const Heading = styled.h2`
   font-size: 4rem;
   text-transform: uppercase;
   color: var(--dark-text);
+
+  @media (max-width: 465px) {
+    text-align: center;
+  }
 `;
 
 type RulesProps = {};

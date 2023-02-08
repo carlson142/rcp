@@ -8,6 +8,10 @@ import CustomButton from "../CustomButton/CustomButton";
 const Container = styled.div`
   display: flex;
   align-self: flex-end;
+
+  @media (max-width: 1000px) {
+    align-self: center;
+  }
 `;
 
 type BottomPannelProps = {};

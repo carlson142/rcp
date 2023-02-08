@@ -28,6 +28,10 @@ const Container = styled.main`
   justify-content: space-between;
 
   position: relative;
+
+  @media (max-width: 600px) {
+    padding: 2rem;
+  }
 `;
 
 const App: React.FC = () => {

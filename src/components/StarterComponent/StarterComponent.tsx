@@ -14,6 +14,10 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    /* width: 10rem; */
+  }
 `;
 
 const Box = styled.div``;
@@ -26,6 +30,16 @@ const Triangle = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
+
+  @media (max-width: 600px) {
+    height: 25rem;
+    width: 25rem;
+  }
+
+  @media (max-width: 465px) {
+    height: 20rem;
+    width: 20rem;
+  }
 `;
 
 interface CBProps {
@@ -61,6 +75,16 @@ const ChooseBox = styled.div<CBProps>`
     height: 21rem;
     width: 21rem;
   }
+
+  @media (max-width: 600px) {
+    height: 15rem;
+    width: 15rem;
+  }
+
+  @media (max-width: 465px) {
+    height: 13rem;
+    width: 13rem;
+  }
 `;
 
 const SelectedIcon = styled.img`
@@ -73,6 +97,16 @@ const SelectedIcon = styled.img`
   border-radius: 50%;
 
   box-shadow: 0px 0px 0px #888, 0px -6px 0px #acacac;
+
+  @media (max-width: 600px) {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  @media (max-width: 465px) {
+    height: 9rem;
+    width: 9rem;
+  }
 `;
 
 type StarterComponentProps = {};
